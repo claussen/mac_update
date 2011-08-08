@@ -1,0 +1,17 @@
+# do not push Xcode - it screws up dev configs
+XcodeUpdate-3.2.6
+# do not auto-push OSX updates - requires reboot
+MacOSXUpd10.6.7-10.6.7
+MacOSXUpd10.6.8-10.6.8
+MacOSXUpd10.6.8-10.6.8 v1.1
+Mac OS X 10.6.8 Supplemental Update-1.0
+# do not auto-push Safari - requires reboot
+Safari5.0.4SnowLeopard-5.0.4
+Safari5.0.5SnowLeopard-5.0.5
+Safari5.1SnowLeopard-5.1
+#do not auto-push Security updates - requires reboot
+SecUpd2011-002Snow-1.0
+
+#iMac requires reboot
+ThunderboltFirmwareUpdate1.0-1.0
+##  new items to consider below this line  ##
