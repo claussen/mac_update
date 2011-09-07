@@ -2,6 +2,8 @@
 041-0222-2.6
 041-0609-2.5
 041-1586-2.6
+041-0846-2.7
+041-2065-2.8
 AirPortUtility-5.5.3
 Aperture3.1.2Update-3.1.2
 Aperture3.1.3Update-3.1.3
@@ -21,9 +23,11 @@ iTunesX-10.2.2
 iTunesXPatch-10.2.2
 iTunesXPatch-10.3
 iTunesXPatch-10.4
+iTunesXPatch-10.4.1
 iTunesX-10.3
 iTunesX-10.3.1
 iTunesX-10.4
+iTunesX-10.4.1
 iWeb3.0.3-3.0.3
 iWeb3.0.4-3.0.4
 iWork0905-9.1
@@ -32,6 +36,8 @@ JavaForMacOSX10.6Update5-1.0
 Migration Assistant Update for Mac OS X Snow Leopard-1.0
 RAWCameraUpdate3.6-3.6
 RAWCameraUpdate3.7-3.7
+RAWCameraUpdate3.8-3.8
 RemoteDesktopClient-3.5.1
 ProKitUpdate60-7.0
 SecUpd2011-003Snow-1.0
+

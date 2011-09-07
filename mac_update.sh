@@ -12,11 +12,13 @@
 #
 #
 #  Suggested Crontab:
-#		*  0 */4 * * 1,2,3,4,5  /usr/sbin/softwareupdate -l  1>/tmp/check_softwareupdate.log 2>&1#
+#		*  0 */4 * * 1,2,3,4,5  /usr/bin/sudo /usr/sbin/softwareupdate -l  1>/tmp/check_softwareupdate.log 2>&1#
 #
 #  Suggested /etc/sudoers addition (change $ADMIN_USER as appropriate)
 #		#Allow limited softwareupdate actions  w/o password prompt
 #		$ADMIN_USER ALL = NOPASSWD: /usr/sbin/softwareupdate -i *
+#		#Allow softwareupdate -l  w/o password prompt #required for LION
+#		$ADMIN_USER ALL = NOPASSWD: /usr/sbin/softwareupdate -l 
 #
 
 # Revisions
@@ -31,6 +33,7 @@
 # Jul. 20 2011 ver 1.08  properly handle updates with spaces in the name.  e.g."Migration Assistant Update for Mac OS X Snow Leopard-1.0"
 # Jul. 20 2011 ver 1.09  more tweaks for spaces
 # Jul. 27 2011 ver 1.09  put space logic in place for .$HOST logs as well.
+# Aug. 12 2011 ver 1.10  beginnings of LION support for this script, requires additional SUDOERS entry on all hosts.
 
 
 # Possible Future Additions
@@ -100,14 +103,14 @@ for HOST in `cat $RUN_DIR/mac_all.txt`;do
 		#  confirm /tmp/check_softwareupdate.log exists
 		ssh $ADMIN_USER@$HOST  "ls /tmp/check_softwareupdate.log" 1> /dev/null 2>&1
 		if [ $? -ne "0" ]; then
-			ssh $ADMIN_USER@$HOST  " /usr/sbin/softwareupdate -l  1>/tmp/check_softwareupdate.log 2>&1"
+			ssh $ADMIN_USER@$HOST  " /usr/bin/sudo /usr/sbin/softwareupdate -l  1>/tmp/check_softwareupdate.log 2>&1"
 		fi	
 
 		#  confirm /tmp/check_softwareupdate.log is up to date
 		ssh $ADMIN_USER@$HOST  "cat /tmp/check_softwareupdate.log" | grep Internet\ connection\ appears\ to\ be\ offline
 		if [ $? -eq "0" ]; then
 			echo "time to rerun Software Update"
-			ssh $ADMIN_USER@$HOST  " /usr/sbin/softwareupdate -l  1>/tmp/check_softwareupdate.log 2>&1"
+			ssh $ADMIN_USER@$HOST  " /usr/bin/sudo /usr/sbin/softwareupdate -l  1>/tmp/check_softwareupdate.log 2>&1"
 		fi	
 
 		# List updates
@@ -148,7 +151,7 @@ for HOST in `cat $RUN_DIR/mac_all.txt`;do
 				fi
 			done
 			#update /tmp/check_softwareupdate.log
-			ssh $ADMIN_USER@$HOST "/usr/sbin/softwareupdate -l  1>/tmp/check_softwareupdate.log 2>&1"
+			ssh $ADMIN_USER@$HOST "/usr/bin/sudo /usr/sbin/softwareupdate -l  1>/tmp/check_softwareupdate.log 2>&1"
 		
 			# update log
 			#ssh $ADMIN_USER@$HOST  "cat /tmp/check_softwareupdate.log" | grep \* | grep -v Missing\ bundle\ identifier | awk  '{ print $2 }' > $RUN_DIR/.$HOST.updates_available
